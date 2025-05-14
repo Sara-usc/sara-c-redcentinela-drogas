@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulario de Vigilancia Centinela - Drogas</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 1rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    h2 {
+      margin-top: 2rem;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.5rem;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.3rem;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+  <script>
+    function toggleSections() {
+      const type = document.getElementById("tipo-punto").value;
+      const sections = ["sanitario", "farmaceutico", "educativo", "social", "fuerzas", "noespecificado"];
+      sections.forEach(id => {
+        const section = document.getElementById(id);
+        if (section) {
+          section.style.display = (type === id) ? "block" : "none";
+        }
+      });
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+      toggleSections();
+    });
+  </script>
+</head>
+<body>
+  <h1>Formulario de Vigilancia Centinela - Drogas</h1>
+
+  <label for="tipo-punto">Tipo de punto centinela</label>
+  <select id="tipo-punto" onchange="toggleSections()" required>
+    <option value="">Selecciona uno</option>
+    <option value="sanitario">Sanitario</option>
+    <option value="farmaceutico">Farmacéutico</option>
+    <option value="educativo">Educativo</option>
+    <option value="social">Social/Comunitario</option>
+    <option value="fuerzas">Fuerzas del orden</option>
+    <option value="noespecificado">No especificado / Otro</option>
+  </select>
+
+  <h2>1. Datos generales de la señal</h2>
+  <label for="localizacion">Localización del nodo centinela</label>
+  <input id="localizacion" required>
+  <label for="fecha">Fecha</label>
+  <input id="fecha" type="date" required>
+  <label for="hora">Hora</label>
+  <input id="hora" type="time" required>
+
+  <h2>2. Características del consumidor</h2>
+  <label for="sexo">Sexo</label>
+  <select id="sexo" required>
+    <option value="">Selecciona</option>
+    <option>Masculino</option>
+    <option>Femenino</option>
+    <option>Otro</option>
+  </select>
+  <label for="edad">Edad aproximada</label>
+  <input id="edad" type="number" min="0" max="120" required>
+
+  <h2>3. Información sobre la sustancia</h2>
+  <label for="sustancia">Tipo de sustancia</label>
+  <input id="sustancia" required>
+  <label for="via">Vía de administración</label>
+  <input id="via">
+  <label for="dosis">Dosis (si se sabe)</label>
+  <input id="dosis">
+
+  <div id="sanitario" class="hidden">
+    <h2>4. Ámbito sanitario</h2>
+    <label>Motivo de consulta<input></label>
+    <label>Gravedad<input></label>
+    <label>Intervención<input></label>
+  </div>
+
+  <div id="farmaceutico" class="hidden">
+    <h2>4. Ámbito farmacéutico</h2>
+    <label>Motivo de sospecha<input></label>
+    <label>Productos solicitados<input></label>
+    <label>Frecuencia<input></label>
+  </div>
+
+  <div id="educativo" class="hidden">
+    <h2>4. Ámbito educativo</h2>
+    <label>Comportamiento observado<input></label>
+    <label>Contexto<input></label>
+    <label>Impacto académico<input></label>
+  </div>
+
+  <div id="social" class="hidden">
+    <h2>4. Ámbito social/comunitario</h2>
+    <label>Situación social<input></label>
+    <label>Patrón de consumo<input></label>
+    <label>Factores de riesgo<input></label>
+  </div>
+
+  <div id="fuerzas" class="hidden">
+    <h2>4. Ámbito fuerzas del orden</h2>
+    <label>Tipo de intervención<input></label>
+    <label>Delito asociado<input></label>
+    <label>Resultado de la actuación<input></label>
+  </div>
+
+  <div id="noespecificado" class="hidden">
+    <h2>4. Ámbito no especificado / otro</h2>
+    <label>Descripción de la fuente y contexto<input></label>
+  </div>
+
+  <h2>5. Otros comentarios</h2>
+  <label>Contexto detallado del consumo<textarea></textarea></label>
+  <label>Motivaciones percibidas<textarea></textarea></label>
+  <label>Nuevas tendencias o patrones<textarea></textarea></label>
+  <label>Otros nombres de las sustancias<textarea></textarea></label>
+  <label>Percepción del riesgo<textarea></textarea></label>
+  <label>Impacto en el entorno social<textarea></textarea></label>
+  <label>Observaciones adicionales<textarea></textarea></label>
+
+  <br><br>
+  <button type="submit">Enviar</button>
+</body>
+</html>
